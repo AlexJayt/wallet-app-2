@@ -1,0 +1,7 @@
+<div id="currency" (click)="showList()">
+  {{ selected | uppercase}}
+  <div class="icon" [class.rotate]="!hidden"></div>
+</div>
+<ul class="dropdown" *ngIf="!hidden">
+  <li *ngFor="let currency of currencies" (click)="select(currency)">{{ currency.name | uppercase}}</li>
+</ul>

@@ -1,0 +1,65 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  margin-bottom: 0; 
+  background: #fff;
+  border-radius: 10px;
+  align-items: flex-start;
+  width: 400px;
+}
+
+h2 {
+  margin: 10px;
+  align-self: center;
+  color: #0063B1;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  margin-bottom: 0;
+  font-size: 20px;
+  color: #333;
+  align-items: center;
+  width: calc(100% - 20px);
+}
+
+.form label:last-child {
+  margin-bottom: 10px;   
+}
+
+.error {
+  color: red;
+  margin: 10px;
+}
+
+input {
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  width: 250px;
+  padding: 5px;
+}
+
+.login-btn {
+  background-color: #0063B1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  user-select: none;
+  margin: 10px 30px;
+  margin-bottom: 0; 
+  width: 400px;
+}
+
+.login-btn:disabled {
+   background-color: #777;
+   cursor: default
+}

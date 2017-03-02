@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://demo.sdk.finance/api/rest",
+    "secure": false
+  }
+}

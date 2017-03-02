@@ -1,0 +1,42 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #0063B1;
+  width: 200px;
+  height: 120px;
+  margin: 30px;
+  margin-bottom: 0; 
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* selected card */
+.selected {
+   background: #003F8D;
+}
+
+/* margin between elements inside the card */
+.card div {
+  margin: 10px;
+}
+
+/* button delete */
+.delete {
+  display: inline-block;
+  margin: 30px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+  background-color: firebrick;
+  cursor: pointer;
+}
