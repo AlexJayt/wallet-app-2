@@ -1,0 +1,18 @@
+<a routerLink="add">Add</a>
+<div class="wallets">
+  <div class="header">
+    <div class="name cell">Name</div>
+    <div class="code cell">Code</div>
+    <div class="currency cell">Currency</div>
+    <div class="balance cell">Balance</div>
+    <div class="delete cell"></div>
+  </div>
+  <div class="content" *ngFor="let wallet of wallets">
+    <div class="name cell">{{ wallet.name }}</div>
+    <div class="code cell">{{ wallet.code }}</div>
+    <div class="currency cell">{{ wallet.currency | uppercase}}</div>
+    <div class="balance cell">{{ wallet.balance }}</div>
+    <div class="delete cell" (click)="delete(wallet)">x</div>
+  </div>
+  <div *ngIf="!wallets.length" class="no-wallets">No wallets</div>
+</div>

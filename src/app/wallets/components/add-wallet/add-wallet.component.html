@@ -1,0 +1,59 @@
+<form [formGroup]="addWalletForm" novalidate (ngSubmit)="save()">
+
+  <div class="form">
+
+    <label for="">
+      Name:
+      <input type="text" formControlName="name">
+    </label>
+
+    <div class="alert" *ngIf="addWalletForm.get('name').hasError('required') && addWalletForm.get('name').touched">Name is required!</div>
+
+    <label for="">
+      Code:
+      <input type="text" formControlName="code">
+    </label>
+
+    <div class="alert" 
+      *ngIf="addWalletForm.get('code').hasError('required') && addWalletForm.get('code').touched">
+      Code is required!
+    </div>
+    <div class="alert" 
+      *ngIf="addWalletForm.get('code').hasError('pattern') && addWalletForm.get('code').touched">
+      Mast be positive integer
+    </div>
+
+    <label for="">
+      Balance:
+      <input type="text" formControlName="balance">
+    </label>
+
+    <div class="alert" 
+      *ngIf="addWalletForm.get('balance').hasError('required') && addWalletForm.get('balance').touched">
+      Balance is required!
+    </div>
+    <div class="alert" 
+      *ngIf="addWalletForm.get('balance').hasError('pattern') && addWalletForm.get('balance').touched">
+      Mast be positive number in X.XX format!
+    </div>
+
+    <label for="">
+      Currency:
+      <div class="currency">
+        <app-currency-select (selectedCurrency)="setCurrency($event)" ></app-currency-select>
+      </div>
+    </label>
+
+  </div>
+
+  <div class="btns">
+    <button class="cancel" type="button" (click)="goBack()">Cancel</button>
+    <button 
+      class="save" 
+      type="submit"
+      [disabled]="addWalletForm.invalid">
+      Save
+    </button>
+  </div>
+
+</form>

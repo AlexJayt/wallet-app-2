@@ -1,0 +1,32 @@
+<div class="main">
+  <form [formGroup]="loginForm" action="" novalidate (ngSubmit)="logIn()">
+    <div class="form">
+
+      <h2>Welcome!</h2>
+
+      <label for=""> Login:
+        <input type="text" formControlName="login">
+      </label>
+      <div class="error" 
+        *ngIf="loginForm.get('login').hasError('pattern') && loginForm.get('login').touched">
+        Format is incorrect.
+      </div>
+      <div class="error" 
+        *ngIf="loginForm.get('login').hasError('required') && loginForm.get('login').touched">
+        Login is required.
+      </div>
+
+      <label for="">Password:
+        <input type="password" formControlName="pass">
+      </label>
+      <div class="error" 
+        *ngIf="loginForm.get('pass').hasError('required') && loginForm.get('pass').touched">
+        Password is required.
+      </div>
+
+      <div class="error" *ngIf="error">Your login or password is incorrect. Please try again.</div>
+
+    </div>
+    <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Log In</button>
+  </form>
+</div>

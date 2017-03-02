@@ -1,0 +1,9 @@
+<div class="cards">
+  <div class="card" *ngFor="let card of cards" (click)="select(card)" [class.selected]="card.selected">
+    <div>{{ card.name }}</div>
+    <div>{{ card.balance }}</div>
+  </div>
+</div>
+<div class="delete" (click)="delete()" *ngIf="isSelected()">Delete</div>
+
+<div class="no-cards" *ngIf="!cards.length">You have no cards:(</div>
