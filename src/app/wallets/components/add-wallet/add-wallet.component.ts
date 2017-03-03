@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { WalletService } from '../../services/wallet.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CurrencyService } from '../../services/currency.service';
 
 import { Wallet } from '../../classes/wallet';
 
@@ -12,11 +13,14 @@ import { Wallet } from '../../classes/wallet';
 })
 export class AddWalletComponent implements OnInit {
   addWalletForm: FormGroup;
+  currency;
+  currencies = [];
 
-  constructor(private location: Location, private fb: FormBuilder, private walletService: WalletService) { }
+  constructor(private location: Location, private fb: FormBuilder, private walletService: WalletService, private currencyService: CurrencyService) { }
 
   ngOnInit() {
     this.createForm();
+    this.getCurrencies();
   }
 
   createForm() {
@@ -33,8 +37,18 @@ export class AddWalletComponent implements OnInit {
     })
   }
 
+  getCurrencies() {
+    this.currencyService.getCurrency()
+                        .subscribe(
+                          cur => {
+                            this.currencies = cur; 
+                            this.currency = this.currencies[0].name;
+                          },
+                          error => console.log(error));
+  }
+
   setCurrency(currency) {
-    //this.newCarrency = currency;
+    this.currency = currency;
   }
 
   goBack(): void {
@@ -46,7 +60,7 @@ export class AddWalletComponent implements OnInit {
       name: this.addWalletForm.get('name').value,
       code: this.addWalletForm.get('code').value,
       balance: this.addWalletForm.get('balance').value,
-      currency: 'gg',
+      currency: this.currency
     }
     console.log(newWallet);
     this.walletService.addWallet(newWallet).subscribe(

@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
-import { CurrencyService } from '../../services/currency.service';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 
 @Component({
@@ -12,28 +11,15 @@ import { CurrencyService } from '../../services/currency.service';
 })
 export class CurrencySelectComponent implements OnInit {
   errorMessage: string;
-  currencies = [];
-  @Output() selectedCurrency = new EventEmitter;
-  selected;
+  @Input() list;
+  @Output() selectedItem = new EventEmitter;
+  @Input() selected;
   hidden = true;
 
-  constructor(private currencyService: CurrencyService, private _eref: ElementRef) {
+  constructor(private _eref: ElementRef) {
   }
 
-  ngOnInit() {
-    this.getCurrencies();
-  }
-
-  getCurrencies() {
-    this.currencyService.getCurrency()
-                        .subscribe(
-                          cur => {
-                            this.currencies = cur; 
-                            this.selected = this.currencies[0].name;
-                            this.setCurrency()
-                          },
-                          error => this.errorMessage = <any>error);
-  }
+  ngOnInit() {  }  
 
   showList() {
     this.hidden = !this.hidden;
@@ -43,13 +29,13 @@ export class CurrencySelectComponent implements OnInit {
       this.hidden = true;
   }
 
-  select(currency) {
-    this.selected = currency.name;
+  select(item) {
+    this.selected = item.name;
     this.hidden = true;
-    this.setCurrency();
+    this.setItem();
   }
 
-  setCurrency() {
-    this.selectedCurrency.emit(this.selected);
+  setItem() {
+    this.selectedItem.emit(this.selected);
   }
 }

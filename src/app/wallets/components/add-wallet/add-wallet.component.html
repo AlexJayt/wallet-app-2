@@ -40,7 +40,7 @@
     <label for="">
       Currency:
       <div class="currency">
-        <app-currency-select (selectedCurrency)="setCurrency($event)" ></app-currency-select>
+        <app-currency-select [list]="currencies" [selected]="currency" (selectedItem)="setCurrency($event)" ></app-currency-select>
       </div>
     </label>
 
