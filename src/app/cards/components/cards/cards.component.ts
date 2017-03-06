@@ -18,7 +18,7 @@ export class CardsComponent implements OnInit {
     this.getCards();
   }
 
-  // get array of cards from http
+  // get array of cards from service
   getCards() {
     this.cardsService.getCards()
       .subscribe(

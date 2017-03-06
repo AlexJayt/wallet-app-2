@@ -22,7 +22,7 @@ export class LogInComponent implements OnInit {
     this.loginForm = this.fb.group({
       login: ['', [
         Validators.required, 
-        Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
+        Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/) // email format
       ]],
       pass: ['', Validators.required]
     })

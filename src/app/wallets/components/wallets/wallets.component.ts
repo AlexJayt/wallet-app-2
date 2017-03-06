@@ -11,6 +11,7 @@ import { Router } from '@angular/router'; //login
   styleUrls: ['./wallets.component.css']
 })
 export class WalletsComponent implements OnInit {
+  // our array of wallets
   wallets: Wallet[] = [];
   
   errorMessage: string;
@@ -19,7 +20,7 @@ export class WalletsComponent implements OnInit {
   ngOnInit() {
     this.getWallets();
   }
-
+  // get wallets from service
   getWallets() {
     this.walletService.getWallets()
       .subscribe(
@@ -27,9 +28,13 @@ export class WalletsComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
 
+  // delete wallet 
   delete(wallet: Wallet) {
+    // find index of this wallet 
     let index = this.wallets.indexOf(wallet);
+    // delete requesr to server
       this.walletService.deleteWallet(this.wallets[index].id).subscribe(
+        // delete from our array
         () => this.wallets.splice(index, 1)
       )
   }

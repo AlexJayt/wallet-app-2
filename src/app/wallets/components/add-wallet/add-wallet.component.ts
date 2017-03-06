@@ -37,6 +37,7 @@ export class AddWalletComponent implements OnInit {
     })
   }
 
+  // get currencies from currencies service
   getCurrencies() {
     this.currencyService.getCurrency()
                         .subscribe(
@@ -47,6 +48,7 @@ export class AddWalletComponent implements OnInit {
                           error => console.log(error));
   }
 
+  // ser current currency
   setCurrency(currency) {
     this.currency = currency;
   }
@@ -56,6 +58,7 @@ export class AddWalletComponent implements OnInit {
   }
 
   save(): void {
+    // creare object with entered data (new wallet)
     let newWallet = {
       name: this.addWalletForm.get('name').value,
       code: this.addWalletForm.get('code').value,
@@ -63,6 +66,8 @@ export class AddWalletComponent implements OnInit {
       currency: this.currency
     }
     console.log(newWallet);
+
+    // post new wallet 
     this.walletService.addWallet(newWallet).subscribe(
       () => this.location.back()
     );
