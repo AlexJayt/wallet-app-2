@@ -9,7 +9,7 @@
       </label>
       <div class="error" 
         *ngIf="loginForm.get('login').hasError('pattern') && loginForm.get('login').touched">
-        Format is incorrect.
+        Login must be in format for example you@example.com.
       </div>
       <div class="error" 
         *ngIf="loginForm.get('login').hasError('required') && loginForm.get('login').touched">
