@@ -22,7 +22,7 @@ export class LogInComponent implements OnInit {
     this.loginForm = this.fb.group({
       login: ['', [
         Validators.required, 
-        Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/) // email format
+        Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,20}$/) // email format
       ]],
       pass: ['', Validators.required]
     })
@@ -30,6 +30,7 @@ export class LogInComponent implements OnInit {
 
   logIn() {
       // creare object with entered login and password
+      //this.waiting = true;
     let data = {
       "login": this.loginForm.get('login').value.toLowerCase(),
       "password": this.loginForm.get('pass').value
@@ -49,3 +50,12 @@ export class LogInComponent implements OnInit {
       error => this.error = error); //JSON.parse(error._body).status
   }
 }
+/**
+ * individual@sdk.finance
+ * 1
+ * 
+ * merchant@sdk.finance
+ * 1
+ * 
+ * 
+ */

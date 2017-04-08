@@ -27,6 +27,6 @@
       <div class="error" *ngIf="error">Your login or password is incorrect. Please try again.</div>
 
     </div>
-    <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Log In</button>
+    <button class="login-btn" type="submit" [loager]="waiting">Log In</button>
   </form>
 </div>

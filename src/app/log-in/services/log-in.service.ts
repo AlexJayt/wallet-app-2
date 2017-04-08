@@ -6,8 +6,8 @@ import 'rxjs/Rx'
 @Injectable()
 export class LogInService {
   // API`s URL
-  //private loginUrl = "/api/authorization";
-  private loginUrl = "https://demo.sdk.finance/api/rest/authorization"; 
+  private loginUrl = "/api/authorization";
+  // private loginUrl = "https://demo.sdk.finance/api/rest/authorization"; 
 
   constructor(private http: Http) { }
 
