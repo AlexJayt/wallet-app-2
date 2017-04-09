@@ -42,6 +42,48 @@ export class InMemoryDataService implements InMemoryDbService {
         balance: 300,
         selected: false, 
         id: 3
+      },
+      {
+        name: "Card1",
+        balance: 100,
+        selected: false,
+        id: 1
+      },
+      {
+        name: "Card2",
+        balance: 200,
+        selected: false, 
+        id: 2
+      },
+      {
+        name: "Card3",
+        balance: 300,
+        selected: false, 
+        id: 3
+      },
+      {
+        name: "Card1",
+        balance: 100,
+        selected: false,
+        id: 1
+      },
+      {
+        name: "Card2",
+        balance: 200,
+        selected: false, 
+        id: 2
+      },
+      {
+        name: "Card3",
+        balance: 300,
+        selected: false, 
+        id: 3
+      },
+      {
+        name: "Card1",
+        balance: 100,
+        selected: false,
+        id: 1
       }
     ];
     let currencies = [

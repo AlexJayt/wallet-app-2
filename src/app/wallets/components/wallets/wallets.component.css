@@ -16,8 +16,10 @@ a {
   margin: 30px;
   border-radius: 10px;
   background-color: #fff;
-  max-width: 600px;
+  min-width: 600px;
+  max-width: 790px;
   cursor: default;
+  
 }
 
 .wallets :last-child {
@@ -54,11 +56,11 @@ a {
 }
 
 .code {
-  width: 15%;
+  width: 30%;
 }
 
 .currency {
-  width: 20%;
+  width: 15%;
 }
 
 .balance {
@@ -70,7 +72,7 @@ a {
   color: firebrick;
 }
 
-.content .delete {
+.delete-btn {
   cursor: pointer;
 }
 

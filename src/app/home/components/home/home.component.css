@@ -1,0 +1,56 @@
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  display: flex;
+  color: #444;
+  font-size: 24px;
+  margin: 10px;
+  margin-bottom: 0; 
+  background-color: #ddd;
+  height: 40px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0 10px 0 10px;
+}
+
+.menu {
+  background-color: #444;
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  float: left;
+}
+
+.main {
+  background-color: #ddd;
+  width: calc(100% - 200px);
+  position: relative;
+  float: right;
+  min-height: 100%
+}
+
+a.active {
+  background-color: #ccc;
+}
+
+a:hover {
+  background-color: #ccc;
+}
+
+.home {
+  height: 100%;
+  width: 100%;
+}
+
+.log-out {
+  margin-bottom: 10px;
+}

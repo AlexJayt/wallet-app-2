@@ -1,4 +1,29 @@
 import { Injectable } from '@angular/core';
+
+const currenciesList = [
+  {
+      "name": "eur"
+    },
+    {
+      "name": "usd"
+    },
+    {
+      "name": "uah"
+    }
+];
+
+@Injectable()
+export class CurrencyService {
+  currencies = currenciesList;
+
+  getCurrency() {
+    return this.currencies;
+  }
+}
+
+
+/*
+import { Injectable } from '@angular/core';
 import { Http, Response,RequestOptions,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx'
@@ -34,3 +59,4 @@ export class CurrencyService {
     return Observable.throw(errMsg);
   }
 }
+ */

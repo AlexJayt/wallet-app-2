@@ -9,10 +9,10 @@
   </div>
   <div class="content" *ngFor="let wallet of wallets">
     <div class="name cell">{{ wallet.name }}</div>
-    <div class="code cell">{{ wallet.code }}</div>
-    <div class="currency cell">{{ wallet.currency | uppercase}}</div>
-    <div class="balance cell">{{ wallet.balance }}</div>
-    <div class="delete cell" (click)="delete(wallet)">x</div>
+    <div class="code cell">{{ wallet.serial }}</div>
+    <div class="currency cell">{{ wallet.emitent.currency | uppercase}}</div>
+    <div class="balance cell">{{ wallet.amount }}</div>
+    <div class="delete cell"><div class="delete-btn" *ngIf="wallet.amount == 0" (click)="delete(wallet)">x</div></div>
   </div>
   <div *ngIf="!wallets.length" class="no-wallets">No wallets</div>
 </div>

@@ -1,58 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx'
-
+import { WalletHttpService } from './wallet.http.service';
 import { Wallet } from '../classes/wallet'
 
 @Injectable()
 export class WalletService {
-  private walletsUrl = "app/wallets";
+  r = 0;
 
-  constructor(private http: Http) { }
+  constructor(private walletHttpService: WalletHttpService) {
+    this.getWalletsFromHttp();
+    this.r++;
+    console.log(this.r);
+  }
 
+  wallets: Wallet[] = [];
+
+
+   getWalletsFromHttp() {
+    this.walletHttpService.getWallets()
+      .subscribe(
+        wal => console.log(wal), //this.wallets = wal,
+        error => console.log(error)
+      );
+  }
 
   getWallets() {
-    return this.http.get(this.walletsUrl)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this.wallets;
   }
 
-
-  addWallet(wallet): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    //headers.append('Authorization','TOKEN '+token);
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.walletsUrl, JSON.stringify(wallet), options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  deleteWallet(id): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let url = `${this.walletsUrl}/${id}`;
-    console.log(id);
-    return this.http.delete(url, options)
-      //.map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.data;
-  }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+  deleteWallet(wallet) {
+    let index = this.wallets.indexOf(wallet); // find index of this wallet 
+      this.walletHttpService.deleteWallet(this.wallets[index]).subscribe(
+        () => this.wallets.splice(index, 1) // delete from our array
+      )
   }
 }

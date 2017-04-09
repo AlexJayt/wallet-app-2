@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletService } from '../../services/wallet.service';
+import { WalletHttpService } from '../../services/wallet.http.service';
 
 import { Wallet } from '../../classes/wallet'
 
@@ -16,7 +16,7 @@ export class WalletsComponent implements OnInit {
   
   errorMessage: string;
 
-  constructor(private walletService: WalletService, private router: Router) { }  //login
+  constructor(private walletService: WalletHttpService, private router: Router) { }  //login
   ngOnInit() {
     this.getWallets();
   }
@@ -24,7 +24,7 @@ export class WalletsComponent implements OnInit {
   getWallets() {
     this.walletService.getWallets()
       .subscribe(
-      wal => this.wallets = wal,
+      wal => this.wallets = wal.coins,
       error => this.errorMessage = <any>error);
   }
 
@@ -32,8 +32,8 @@ export class WalletsComponent implements OnInit {
   delete(wallet: Wallet) {
     // find index of this wallet 
     let index = this.wallets.indexOf(wallet);
-    // delete requesr to server
-      this.walletService.deleteWallet(this.wallets[index].id).subscribe(
+    // delete request to server
+      this.walletService.deleteWallet(this.wallets[index]).subscribe(
         // delete from our array
         () => this.wallets.splice(index, 1)
       )

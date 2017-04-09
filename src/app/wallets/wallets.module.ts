@@ -5,9 +5,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// im memory api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from '../in-memory-data.service';
 
 // components
 import { WalletsComponent } from './components/wallets/wallets.component';
@@ -15,11 +12,13 @@ import { AddWalletComponent } from './components/add-wallet/add-wallet.component
 import { CurrencySelectComponent } from './components/currency-select/currency-select.component';
 
 // services
-import { WalletService } from './services/wallet.service';
+import { WalletHttpService } from './services/wallet.http.service';
 import { CurrencyService } from './services/currency.service';
+import { WalletService } from './services/wallet.service';
 
 // routes
 import { routes } from './wallets-routing';
+
 
 @NgModule({
   imports: [
@@ -27,8 +26,7 @@ import { routes } from './wallets-routing';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    RouterModule.forChild(routes)
   ],
   declarations: [
     WalletsComponent,
@@ -36,8 +34,9 @@ import { routes } from './wallets-routing';
     CurrencySelectComponent
   ],
   providers: [
-    WalletService,
-    CurrencyService
+    WalletHttpService,
+    CurrencyService,
+    WalletService
   ]
 })
 export class WalletsModule { }

@@ -37,17 +37,22 @@ export class LogInComponent implements OnInit {
     }
     
       // send object
+      console.log(data);
     this.loginService.login(data).subscribe(
       log => { 
           // if respone is with "OK" status
           // save received token to localStorage
           // and go to the wallets page
-        if (JSON.parse(log._body).status == "ok") {
-          localStorage.setItem('token', JSON.parse(log._body).authorizationToken.token);
+
+        if (log.status == "ok") {
+          localStorage.setItem('token', log.authorizationToken.token);
           this.router.navigate(['/wallets']);
         }
       },
-      error => this.error = error); //JSON.parse(error._body).status
+      error => {
+        //let obj = JSON.parse(error);
+        console.log(error);
+      }); //JSON.parse(error._body).status
   }
 }
 /**

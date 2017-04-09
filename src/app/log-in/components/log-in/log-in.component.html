@@ -17,7 +17,7 @@
       </div>
 
       <label for="">Password:
-        <input type="password" formControlName="pass">
+        <input type="text" formControlName="pass">
       </label>
       <div class="error" 
         *ngIf="loginForm.get('pass').hasError('required') && loginForm.get('pass').touched">
@@ -27,6 +27,7 @@
       <div class="error" *ngIf="error">Your login or password is incorrect. Please try again.</div>
 
     </div>
-    <button class="login-btn" type="submit" [loager]="waiting">Log In</button>
+    <button class="login-btn" type="submit" >Log In</button> 
+    <!--[loager]="waiting"-->
   </form>
 </div>
