@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { routes } from './app-routing';
 import { RouterModule } from '@angular/router';
 
+import { AuthGuardService } from './auth-guard.service';
+import { LoginGuardService } from './login-guard.service';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +19,8 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(routes), // , {useHash: false}
   ],
   providers: [
+    AuthGuardService,
+    LoginGuardService
   ],
  bootstrap: [AppComponent]
 })
