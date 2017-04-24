@@ -3,6 +3,24 @@
   <div class="header">
     <div class="name cell">Name</div>
     <div class="code cell">Code</div>
+    <div class="balance cell">Balance</div>
+    <div class="delete cell"></div>
+  </div>
+  <div class="content" *ngFor="let wallet of wallets">
+    <div class="name cell">{{ wallet.name }}</div>
+    <div class="code cell">{{ wallet.serial }}</div>
+    <div class="balance cell">{{ wallet.amount | money: wallet.emitent.currency }}</div>
+    <div class="delete cell"><div class="delete-btn" *ngIf="wallet.amount == 0" (click)="delete(wallet)">x</div></div>
+  </div>
+  <div *ngIf="!wallets.length" class="no-wallets">No wallets</div>
+</div>
+
+<!--
+<a routerLink="add">Add</a>
+<div class="wallets">
+  <div class="header">
+    <div class="name cell">Name</div>
+    <div class="code cell">Code</div>
     <div class="currency cell">Currency</div>
     <div class="balance cell">Balance</div>
     <div class="delete cell"></div>
@@ -11,8 +29,10 @@
     <div class="name cell">{{ wallet.name }}</div>
     <div class="code cell">{{ wallet.serial }}</div>
     <div class="currency cell">{{ wallet.emitent.currency | uppercase}}</div>
-    <div class="balance cell">{{ wallet.amount }}</div>
+    <div class="balance cell">{{ wallet.amount | money: wallet.emitent.currency }}</div>
     <div class="delete cell"><div class="delete-btn" *ngIf="wallet.amount == 0" (click)="delete(wallet)">x</div></div>
   </div>
   <div *ngIf="!wallets.length" class="no-wallets">No wallets</div>
 </div>
+
+-->

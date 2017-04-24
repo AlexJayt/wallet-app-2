@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class LogInComponent implements OnInit {
   loginForm: FormGroup;
   error = '';
+  buttonIsTouched = false;
+  buttonIsDisabled = false;
 
   constructor(private loginService: LogInService, private fb: FormBuilder, private router: Router) { }
 
@@ -28,7 +30,9 @@ export class LogInComponent implements OnInit {
     })
   }
 
-  logIn() {
+  onLogIn() {
+    this.buttonIsTouched = true;
+    this.buttonIsDisabled = true;
       // creare object with entered login and password
       //this.waiting = true;
     let data = {
@@ -47,11 +51,12 @@ export class LogInComponent implements OnInit {
         if (log.status == "ok") {
           localStorage.setItem('token', log.authorizationToken.token);
           this.router.navigate(['/wallets']);
-        }
+        } else this.buttonIsDisabled = false;
       },
       error => {
         //let obj = JSON.parse(error);
         console.log(error);
+        this.buttonIsDisabled = false;
       }); //JSON.parse(error._body).status
   }
 }

@@ -1,5 +1,5 @@
 <div class="main">
-  <form [formGroup]="loginForm" action="" novalidate (ngSubmit)="logIn()">
+  <form [formGroup]="loginForm" action="" novalidate (ngSubmit)="onLogIn()">
     <div class="form">
 
       <h2>Welcome!</h2>
@@ -12,7 +12,7 @@
         Login must be in format for example you@example.com.
       </div>
       <div class="error" 
-        *ngIf="loginForm.get('login').hasError('required') && loginForm.get('login').touched">
+        *ngIf="loginForm.get('login').hasError('required') && (loginForm.get('login').touched || buttonIsTouched)">
         Login is required.
       </div>
 
@@ -20,14 +20,14 @@
         <input type="text" formControlName="pass">
       </label>
       <div class="error" 
-        *ngIf="loginForm.get('pass').hasError('required') && loginForm.get('pass').touched">
+        *ngIf="loginForm.get('pass').hasError('required') && (loginForm.get('pass').touched || buttonIsTouched)">
         Password is required.
       </div>
 
       <div class="error" *ngIf="error">Your login or password is incorrect. Please try again.</div>
 
     </div>
-    <button class="login-btn" type="submit" >Log In</button> 
+    <button class="login-btn" type="submit" [disabled]="buttonIsDisabled">Log In</button> 
     <!--[loager]="waiting"-->
   </form>
 </div>

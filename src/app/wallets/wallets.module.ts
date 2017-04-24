@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MoneyPipe } from '../pipes/money.pipe';
 
 
 // components
@@ -31,7 +32,8 @@ import { routes } from './wallets-routing';
   declarations: [
     WalletsComponent,
     AddWalletComponent,
-    CurrencySelectComponent
+    CurrencySelectComponent,
+    MoneyPipe
   ],
   providers: [
     WalletHttpService,

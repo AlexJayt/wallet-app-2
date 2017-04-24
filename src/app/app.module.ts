@@ -8,15 +8,16 @@ import { RouterModule } from '@angular/router';
 
 import { AuthGuardService } from './auth-guard.service';
 import { LoginGuardService } from './login-guard.service';
-
+import { MoneyPipe } from './pipes/money.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    //MoneyPipe,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes), // , {useHash: false}
+    RouterModule.forRoot(routes) // , {useHash: false}
   ],
   providers: [
     AuthGuardService,
