@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
 import { LoginGuardService } from './login-guard.service';
 import { MoneyPipe } from './pipes/money.pipe';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MoneyPipe } from './pipes/money.pipe';
   ],
   providers: [
     AuthGuardService,
-    LoginGuardService
+    LoginGuardService,
+    AuthService
   ],
  bootstrap: [AppComponent]
 })

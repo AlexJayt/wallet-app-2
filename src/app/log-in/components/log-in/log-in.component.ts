@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogInService } from '../../services/log-in.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth.service'
 
 @Component({
   selector: 'app-log-in',
@@ -14,7 +15,8 @@ export class LogInComponent implements OnInit {
   buttonIsTouched = false;
   buttonIsDisabled = false;
 
-  constructor(private loginService: LogInService, private fb: FormBuilder, private router: Router) { }
+  constructor(private loginService: LogInService, private fb: FormBuilder, 
+    private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
     this.createForm();
@@ -33,6 +35,10 @@ export class LogInComponent implements OnInit {
   onLogIn() {
     this.buttonIsTouched = true;
     this.buttonIsDisabled = true;
+    if (this.loginForm.invalid) {
+      this.buttonIsDisabled = false;
+      return;
+    };
       // creare object with entered login and password
       //this.waiting = true;
     let data = {
@@ -41,7 +47,6 @@ export class LogInComponent implements OnInit {
     }
     
       // send object
-      console.log(data);
     this.loginService.login(data).subscribe(
       log => { 
           // if respone is with "OK" status
@@ -49,15 +54,15 @@ export class LogInComponent implements OnInit {
           // and go to the wallets page
 
         if (log.status == "ok") {
-          localStorage.setItem('token', log.authorizationToken.token);
+          this.auth.setToken(log.authorizationToken.token);
+          console.log(log.authorizationToken.token);
           this.router.navigate(['/wallets']);
         } else this.buttonIsDisabled = false;
       },
       error => {
-        //let obj = JSON.parse(error);
-        console.log(error);
+        this.error = error;
         this.buttonIsDisabled = false;
-      }); //JSON.parse(error._body).status
+      });
   }
 }
 /**
@@ -66,6 +71,5 @@ export class LogInComponent implements OnInit {
  * 
  * merchant@sdk.finance
  * 1
- * 
  * 
  */

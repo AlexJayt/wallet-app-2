@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx'
+import { AuthService } from '../../auth.service'
+import 'rxjs/Rx';
 
 import { Wallet } from '../classes/wallet'
 
@@ -10,12 +11,11 @@ export class WalletHttpService {
   // private walletsUrl = "https://sandbox.sdk.finance/api/rest/coin";
   private walletsUrl = "/api/coin";
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private auth: AuthService) { }
 
 
   getWallets() {
-    let token = localStorage.getItem('token');
-    console.log(token);
+    let token = this.auth.getToken();
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization','TOKEN ' + token);
     let options = new RequestOptions({ headers: headers });

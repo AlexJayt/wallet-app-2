@@ -8,11 +8,11 @@ export class MoneyPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     let result: String;
     let str: String;
-    let number: Number = Number(value);
+    let number: number = Number(value);
 
     str = String(number.toFixed(2));
     result = '.' + str[str.length - 2] + str[str.length - 1];
-    str = String(number.toFixed(0));
+    str = String(Math.floor(number));
 
     let count = 0;
 

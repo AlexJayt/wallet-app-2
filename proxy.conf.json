@@ -1,7 +1,8 @@
 {
   "/api": {
-    "target": "https://sandbox.sdk.finance/api/rest",
+    "target": "https://sandbox.sdk.finance:443/api/rest/",
     "secure": false,
+    "changeOrigin": true,
     "pathRewrite": {"^/api": ""}
   }
 }

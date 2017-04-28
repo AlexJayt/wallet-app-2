@@ -17,7 +17,7 @@
       </div>
 
       <label for="">Password:
-        <input type="text" formControlName="pass">
+        <input type="password" formControlName="pass">
       </label>
       <div class="error" 
         *ngIf="loginForm.get('pass').hasError('required') && (loginForm.get('pass').touched || buttonIsTouched)">
