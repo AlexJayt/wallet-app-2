@@ -30,12 +30,10 @@ export class WalletsComponent implements OnInit {
 
   // delete wallet 
   delete(wallet: Wallet) {
-    // find index of this wallet 
-    let index = this.wallets.indexOf(wallet);
+    let index = this.wallets.indexOf(wallet);  // find index of this wallet 
     // delete request to server
-      this.walletService.deleteWallet(this.wallets[index]).subscribe(
-        // delete from our array
-        () => this.wallets.splice(index, 1)
+    this.walletService.deleteWallet(this.wallets[index]).subscribe( 
+        () => this.wallets.splice(index, 1) // delete from our array
       )
   }
 }

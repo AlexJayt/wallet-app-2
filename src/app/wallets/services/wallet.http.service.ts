@@ -33,13 +33,15 @@ export class WalletHttpService {
       .catch(this.handleError);
   }
 
-  deleteWallet(id): Observable<any> {
+  deleteWallet(wallet): Observable<any> {
+    let token = this.auth.getToken();
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization','TOKEN ' + token);
     let options = new RequestOptions({ headers: headers });
-    let url = `${this.walletsUrl}/${id}`;
-    console.log(id);
+    let url = `${this.walletsUrl}/${wallet.serial}`;
+    console.log(wallet.serial);
     return this.http.delete(url, options)
-      //.map(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
